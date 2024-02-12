@@ -10,6 +10,7 @@ local options = {
 		python = { "isort", "black" },
       javascript = { { "prettierd", "prettier" } },
 		sh = { "shfmt" },
+		markdown = { 'prettierd', 'injected' },
 	},
 
   -- adding same formatter for multiple filetypes can look too much work for some
