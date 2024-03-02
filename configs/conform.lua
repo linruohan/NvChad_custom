@@ -7,10 +7,16 @@ local options = {
     -- javascript = { "prettier" },
     css = { "prettier" },
     html = { "prettier" },
-    pytho = { "isort", "black" },
+    python = { "isort", "black" },
     javascript = { { "prettierd", "prettier" } },
     sh = { "shfmt" },
     markdown = { "prettierd", "injected" },
+    c = { "clang_format" },
+    cpp = { "clang_format" },
+    objc = { "clang_format" },
+    objcpp = { "clang_format" },
+    cuda = { "clang_format" },
+    proto = { "clang_format" },
   },
 
   -- adding same formatter for multiple filetypes can look too much work for some

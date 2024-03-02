@@ -9,6 +9,8 @@ M.general = {
     ["<leader>bb"] = { "<cmd> !black . <CR>", "run black" },
     ["S"] = { ":w!<cr>" },
     ["Q"] = { ":q!<cr>" },
+    ["<leader>w"] = { ":w!<cr>" },
+    ["<leader>q"] = { ":q!<cr>" },
     ["="] = { "n" },
     ["-"] = { " N" },
     ["<C-s>"] = { ":w<cr>" },
@@ -23,7 +25,7 @@ M.general = {
     },
   },
   i = {
-    ["jk"] = { "ESC" },
+    ["jj"] = { "ESC" },
   },
   v = {
     [">"] = { ">gv", "indent" },

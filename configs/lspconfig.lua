@@ -20,6 +20,7 @@ local servers = {
   "vimls",
   "bashls",
   "marksman",
+  "clangd",
 }
 
 for _, lsp in ipairs(servers) do
