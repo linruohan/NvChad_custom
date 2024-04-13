@@ -1,5 +1,5 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
 
@@ -7,6 +7,7 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
+    "jsonls", "unocss", "emmet_language_server", "svelte", "yamlls",
   "tsserver",
   "clangd",
   "rust_analyzer",
@@ -29,6 +30,10 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
+-- typescript
+-- require("typescript-tools").setup {
+  -- on_attach = on_attach,
+  -- capabilities = capabilities,
+-- }
 --
 -- lspconfig.pyright.setup { blabla}

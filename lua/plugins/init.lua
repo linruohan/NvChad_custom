@@ -1,4 +1,4 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require("configs.overrides")
 vim.opt.termguicolors = true
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
@@ -12,12 +12,118 @@ vim.o.spell = true
 local plugins = {
 
   -- Override plugin definition options
+{
+    "hrsh7th/nvim-cmp",
+    opts = overrides.cmp,
 
+    dependencies = {
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts)
+
+          local luasnip = require "luasnip"
+
+          luasnip.filetype_extend("javascriptreact", { "html" })
+          luasnip.filetype_extend("typescriptreact", { "html" })
+          luasnip.filetype_extend("svelte", { "html" })
+
+          require('nvchad.configs.luasnip')
+        end,
+      },
+
+      -- ai based completion
+      {
+        "jcdickinson/codeium.nvim",
+        config = function()
+          require("codeium").setup {}
+        end,
+      },
+    },
+  },
+    {
+    "numToStr/Comment.nvim",
+    dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+  },
+
+    {
+            "numToStr/Comment.nvim",
+            dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+            config = function()
+                  require("Comment").setup {
+                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+              }
+                end,
+          },
+ -- dim inactive windows
+  {
+    "andreadev-it/shade.nvim",
+    config = function()
+      require("shade").setup {
+        exclude_filetypes = { "NvimTree" },
+      }
+    end,
+  },
+
+  -- pretty diagnostics panel
+  {
+    "folke/trouble.nvim",
+    cmd = { "Trouble", "TodoTrouble" },
+    dependencies = {
+      {
+        "folke/todo-comments.nvim",
+        opts = {},
+      },
+    },
+    config = function()
+      require("trouble").setup()
+    end,
+  },
+
+  -- syntax support fgor yuck lang
+  {
+    "elkowar/yuck.vim",
+    ft = "yuck",
+  },
+
+  {
+    "gpanders/nvim-parinfer",
+    event = "InsertEnter",
+  },
+
+  -- distraction free mode
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = function()
+      require "configs.zenmode"
+    end,
+  },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = { extensions_list = { "fzf", "glyph" , 'terms'} },
+    dependencies = {
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "ghassan0/telescope-glyph.nvim" },
+    },
+  },
+
+  {
+    "mbbill/undotree",
+    cmd = { "UndotreeToggle" },
+  },
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require "nvchad.configs.lspconfig"
+      require "configs.lspconfig"
     end, -- Override to setup mason-lspconfig
   },
 
@@ -51,7 +157,7 @@ local plugins = {
     --  for users those who want auto-save conform + lazyloading!
     -- event = "BufWritePre"
     config = function()
-      require "custom.configs.conform"
+      require "configs.conform"
     end,
   },
 
@@ -97,45 +203,45 @@ local plugins = {
     end,
   },
 
-  -- Rainbow brackets plugin
-  {"lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    config = function()
-      require("indent_blankline").setup {
-        use_treesitter = true,
-        space_char_blankline = " ",
-        show_current_context_start = true,
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-          "IndentBlanklineIndent3",
-          "IndentBlanklineIndent4",
-          "IndentBlanklineIndent5",
-          "IndentBlanklineIndent6",
-        },
-        show_current_context = true,
-        filetype_exclude = { "help", "dashboard", "dashpreview", "NvimTree", "vista", "sagahover" },
-        buftype_exclude = { "terminal", "nofile" },
-        context_patterns = {
-          "class",
-          "function",
-          "method",
-          "block",
-          "list_literal",
-          "selector",
-          "^if",
-          "^table",
-          "if_statement",
-          "while",
-          "for",
-          "loop",
-          "fn",
-          "func",
-        },
-      }
-    end,
-  },
-
+  -- -- Rainbow brackets plugin
+  -- {"lukas-reineke/indent-blankline.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("indent_blankline").setup {
+  --       use_treesitter = true,
+  --       space_char_blankline = " ",
+  --       show_current_context_start = true,
+  --       char_highlight_list = {
+  --         "IndentBlanklineIndent1",
+  --         "IndentBlanklineIndent2",
+  --         "IndentBlanklineIndent3",
+  --         "IndentBlanklineIndent4",
+  --         "IndentBlanklineIndent5",
+  --         "IndentBlanklineIndent6",
+  --       },
+  --       show_current_context = true,
+  --       filetype_exclude = { "help", "dashboard", "dashpreview", "NvimTree", "vista", "sagahover" },
+  --       buftype_exclude = { "terminal", "nofile" },
+  --       context_patterns = {
+  --         "class",
+  --         "function",
+  --         "method",
+  --         "block",
+  --         "list_literal",
+  --         "selector",
+  --         "^if",
+  --         "^table",
+  --         "if_statement",
+  --         "while",
+  --         "for",
+  --         "loop",
+  --         "fn",
+  --         "func",
+  --       },
+  --     }
+  --   end,
+  -- },
+  --
   -- Copilot
   -- {"zbirenbaum/copilot.lua",
   --   cmd = "Copilot",

@@ -2,7 +2,7 @@
 local M = {}
 
 -- Path to overriding theme and highlights files
-local highlights = require "custom.highlights"
+local highlights = require "highlights"
 
 M.ui = {
   theme = "palenight",
@@ -10,12 +10,15 @@ M.ui = {
 
   hl_override = highlights.override,
   hl_add = highlights.add,
-  transparency = false,
+  transparency = true,
+    statusline =  {
+    theme = 'vscode'
+  }
 }
 
-M.plugins = "custom.plugins"
+-- M.plugins = "plugins"
 
 -- check core.mappings for table structure
-M.mappings = require "custom.mappings"
+-- M.mappings = require "mappings"
 
 return M

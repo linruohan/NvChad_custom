@@ -1,8 +1,8 @@
 local options = {
   lsp_fallback = true,
-
   formatters_by_ft = {
     lua = { "stylua" },
+svelte = { "svelte_fmt" }, -- custom
 
     -- javascript = { "prettier" },
     css = { "prettier" },
@@ -17,6 +17,20 @@ local options = {
     objcpp = { "clang_format" },
     cuda = { "clang_format" },
     proto = { "clang_format" },
+           -- webdev
+    javascript = { "biome" },
+    javascriptreact = { "biome" },
+    typescript = { "biome" },
+    typescriptreact = { "biome" },
+
+    css = { "biome" },
+    html = { "biome" },
+    json = { "biome" },
+    jsonc = { "biome" },
+
+    markdown = { "deno_fmt" },
+    sh = { "shfmt" },
+    yaml = { "yamlfmt" },
   },
 
   -- adding same formatter for multiple filetypes can look too much work for some
@@ -30,6 +44,10 @@ local options = {
   formatters = {
     shfmt = {
       prepend_args = { "-i", "4", "-ci", "-bn", "-sr" },
+    },
+    svelte_fmt = {
+      command = "prettier",
+      args = { "--plugin", prettier_svelte, "$FILENAME" },
     },
   },
   init = function()
