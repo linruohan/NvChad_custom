@@ -8,7 +8,7 @@ local servers = {
   "html",
   "cssls",
     "jsonls", "unocss", "emmet_language_server", "svelte", "yamlls",
-  "tsserver",
+  "ts_ls",
   "clangd",
   "rust_analyzer",
   "gopls",
@@ -22,6 +22,7 @@ local servers = {
   "bashls",
   "marksman",
   "clangd",
+  "ruff",
 }
 
 for _, lsp in ipairs(servers) do
