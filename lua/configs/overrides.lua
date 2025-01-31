@@ -65,7 +65,7 @@ M.mason = {
     "docker-compose-language-service",
 
     -- rust
-    "rust-analyzer",
+    -- "rust-analyzer",
     "rustfmt",
 
     -- go
