@@ -45,6 +45,11 @@ end
 -- 				},
 -- 				prefix = "self",
 -- 			},
+-- 			server = {
+-- 				extraEnv = {
+-- 					RUSTUP_TOOLCHAIN = "nightly",
+-- 				},
+-- 			},
 -- 			cargo = {
 -- 				allFeatures = true,
 -- 				buildScripts = {
