@@ -6,6 +6,10 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 require "nvchad.mappings"
 map("n",";",":")
 map("n","<C-w>","<cmd> bd <CR>", { desc = "close file"})
+-- ctrl + p 搜索文件
+map("n", "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
+-- ctrl + f grep 关键字
+map("n", "<C-f>", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n","<leader>gg","<cmd> !golines . -w <CR>", { desc ="run golines"})
 map("n","<leader>bb","<cmd> !black . <CR>", { desc ="run black"})
 map("n","S",":w!<cr>")
