@@ -2,14 +2,11 @@
 -- NOTE: Sessions
 return {
   "rmagatti/auto-session",
-  enabled = false,
   lazy = false,
   dependencies = {
     "nvim-telescope/telescope.nvim", -- Only needed if you want to use sesssion lens
   },
   init = function()
-    vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
     vim.keymap.set("n", "<leader>st", "<cmd>SessionToggleAutoSave<cr>", { desc = "Session | Toggle", silent = true })
     vim.keymap.set("n", "<leader>sS", "<cmd>SessionSearch<cr>", { desc = "Session | Search", silent = true })
     vim.keymap.set("n", "<leader>sd", "<cmd>SessionDelete<cr>", { desc = "Session | Delete", silent = true })
@@ -27,27 +24,22 @@ return {
       end,
     })
   end,
+  ---enables autocomplete for opts
+  ---@module "auto-session"
+  ---@type AutoSession.Config
   opts = {
-    auto_save_enabled = true, -- Enables/disables auto saving
-    auto_restore_enabled = true, --Enables/disables auto restoring
-    auto_session_enabled = true, -- Enables/disables the plugin's auto save and restore features
-    auto_session_use_git_branch = true, -- Use the git branch to differentiate the session name
-    auto_session_suppress_dirs = {
+    auto_save = true, -- Enables/disables auto saving
+    auto_restore = true, --Enables/disables auto restoring
+    auto_create = true, -- Enables/disables auto creating new session files. Can be a function that returns true if a new session file should be allowed
+    git_use_branch_name = false, --Include git branch name in session name
+    suppressed_dirs = {
       "/",
       "~/",
       "~/Downloads",
     },
-    bypass_session_save_file_types = {
+    bypass_save_filetypes = {
       "NvimTree",
       "nvdash",
-    },
-    session_lens = {
-      -- If load_on_setup is false, make sure you use `:SessionSearch` to open the picker as it will initialize everything first
-      load_on_setup = true,
-      theme_conf = {
-        border = true,
-      },
-      previewer = true,
     },
   },
 }

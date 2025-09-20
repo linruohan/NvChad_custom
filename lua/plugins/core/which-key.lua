@@ -9,9 +9,10 @@ return {
       separator = "➜", -- symbol used between a key and it's label
       group = "", -- symbol prepended to a group
     },
-    preset = "modern",
+    preset = "classic",
     win = {
       border = vim.g.border_enabled and "rounded" or "none",
+      no_overlap = false,
     },
     delay = function()
       return 0
@@ -21,14 +22,17 @@ return {
     require("which-key").setup(opts)
     require("which-key").add {
       {
-        -- { "<leader>s", group = "Sessions", icon = "󰔚" },
+        { "<leader>s", group = "Sessions", icon = "󰔚" },
         { "<leader>a", group = "Avante", icon = "" },
         { "<leader>T", group = "Tests", icon = "󰙨" },
         { "<leader>d", group = "Debugging", icon = "" },
+        { "<leader>D", group = "Database", icon = "󰆼" },
         { "<leader>f", group = "Find", icon = "" },
         { "<leader>g", group = "Git", icon = "󰊢" },
         { "<leader>h", group = "Harpoon", icon = "" },
+        { "<leader>H", group = "HTTP", icon = "" },
         { "<leader>l", group = "LSP", icon = "" },
+        { "<leader>L", group = "Laravel", icon = "󰫐" },
         { "<leader>n", group = "Neovim", icon = "" },
         { "<leader>o", group = "Options", icon = "" },
         { "<leader>p", group = "Plugins", icon = "" },

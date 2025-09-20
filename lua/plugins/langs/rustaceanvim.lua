@@ -1,17 +1,24 @@
 ---@type NvPluginSpec
+
 -- NOTE: Improve Rust Development
 return {
   "mrcjkb/rustaceanvim",
-  version = "^4", -- Recommended
+  version = "^6", -- Recommended
   event = {
     "BufReadPost",
     "BufNewFile",
+  },
+  dependencies = {
+    {
+      "saecki/crates.nvim",
+      tag = "v0.4.0",
+      opts = {},
+    },
   },
   config = function()
     local extension_path = vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension/"
     local codelldb_path = extension_path .. "adapter/codelldb"
     local liblldb_path = extension_path .. "lldb/lib/liblldb"
-    local this_os = vim.uv.os_uname().sysname
     local cfg = require "rustaceanvim.config"
     local on_attach = require("plugins.lsp.opts").on_attach
     local capabilities = require("plugins.lsp.opts").capabilities
