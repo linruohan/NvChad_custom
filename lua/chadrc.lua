@@ -34,10 +34,10 @@ M.ui = {
     },
   },
   statusline = {
-    theme = "minimal", -- default/vscode/vscode_colored/minimal
+    theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
-    separator_style = "round",
+    separator_style = "default",
     order = {
       "mode",
       "file",
@@ -138,9 +138,9 @@ M.mason = {
 M.lsp = { signature = false }
 
 M.base46 = {
-  theme = "midnight_breeze",
+  theme = "github_dark_dimmed",
   transparency = false,
-  theme_toggle = { "midnight_breeze", "sunrise_breeze" },
+  theme_toggle = { "github_dark_dimmed", "sunrise_breeze" },
   hl_override = highlights.override,
   hl_add = highlights.add,
   integrations = {
